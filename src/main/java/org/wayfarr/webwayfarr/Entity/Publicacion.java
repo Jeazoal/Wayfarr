@@ -18,6 +18,6 @@ public class Publicacion {
     @Column(name = "direccion ")
     private String direccion;
     @ManyToOne
-    @JoinColumn(name = "id_usuario", referencedColumnName = "id_user")
+    @JoinColumn(name = "id_user", referencedColumnName = "id_user")
     private User user;
 }

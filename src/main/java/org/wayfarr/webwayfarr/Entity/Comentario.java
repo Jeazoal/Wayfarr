@@ -15,7 +15,7 @@ public class Comentario extends BaseEntity {
     @Column(name = "contenido")
     private String contenido;
     @ManyToOne
-    @JoinColumn(name = "id_usuario", referencedColumnName = "id_user")
+    @JoinColumn(name = "id_user", referencedColumnName = "id_user")
     private User user;
     @ManyToOne
     @JoinColumn(name = "id_publicacion", referencedColumnName = "id_publicacion")
