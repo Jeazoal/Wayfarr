@@ -1,5 +1,5 @@
 package org.wayfarr.webwayfarr.Controller;
 
-public class Likes.Controller {
+public class LikesController {
     
 }
