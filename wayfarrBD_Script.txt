@@ -1,0 +1,76 @@
+CREATE EXTENSION IF NOT EXISTS pgcrypto;
+
+CREATE TABLE users (
+    id_user SERIAL PRIMARY KEY,
+    username VARCHAR(30) NOT NULL,
+    correo VARCHAR(50) NOT NULL,
+    password VARCHAR(100) NOT NULL,
+    sexo CHAR(1),
+    foto VARCHAR(2000),
+    estado_auditoria INT DEFAULT 1, 
+    user_creacion VARCHAR(255),
+    fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    user_modificacion VARCHAR(255),
+    fecha_modificacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE publicaciones (
+    id_publicacion SERIAL PRIMARY KEY,
+    imagen_url VARCHAR(2000),
+    descripcion TEXT,
+    direccion VARCHAR(255),
+    id_usuario INT REFERENCES users(id_user),
+    estado_auditoria INT DEFAULT 1,
+    user_creacion VARCHAR(255),
+    fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    user_modificacion VARCHAR(255),
+    fecha_modificacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE comentarios (
+    id_comentario SERIAL PRIMARY KEY,
+    contenido VARCHAR(280),
+    id_usuario INT REFERENCES users(id_user),
+    id_publicacion INT REFERENCES publicaciones(id_publicacion),
+    estado_auditoria INT DEFAULT 1,
+    user_creacion VARCHAR(255),
+    fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    user_modificacion VARCHAR(255),
+    fecha_modificacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE grupos (
+    id_grupo SERIAL PRIMARY KEY,
+    nombre_grupo VARCHAR(255),
+    descripcion_grupo TEXT,
+    estado_auditoria INT DEFAULT 1,
+    user_creacion VARCHAR(255),
+    fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    user_modificacion VARCHAR(255),
+    fecha_modificacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE users_grupos (
+    id_users_grupos SERIAL PRIMARY KEY,
+    id_user INT REFERENCES users(id_user),
+    id_grupo INT REFERENCES grupos(id_grupo)
+);
+
+CREATE TABLE likes (
+    id_like SERIAL PRIMARY KEY,
+    activo INT DEFAULT 0,
+    estado_like BOOLEAN DEFAULT TRUE,
+    id_publicacion INT REFERENCES publicaciones(id_publicacion),
+    id_user INT REFERENCES users(id_user),
+    estado_auditoria INT DEFAULT 1,
+    user_creacion VARCHAR(255),
+    fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    user_modificacion VARCHAR(255),
+    fecha_modificacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE like_publicacion (
+    id_like_publicacion SERIAL PRIMARY KEY,
+    id_like INT REFERENCES likes(id_like),
+    id_publicacion INT REFERENCES publicaciones(id_publicacion)
+);
