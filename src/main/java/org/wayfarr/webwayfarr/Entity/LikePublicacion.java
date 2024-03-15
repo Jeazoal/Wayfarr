@@ -13,7 +13,7 @@ public class LikePublicacion extends BaseEntity{
     @Id
     @ManyToOne
     @JoinColumn(name = "id_like")
-    private Like like;
+    private Likes like;
 
     @Id
     @ManyToOne
