@@ -12,12 +12,12 @@ import org.wayfarr.webwayfarr.Shared.BaseEntity;
 public class LikePublicacion extends BaseEntity{
     @Id
     @ManyToOne
-    @JoinColumn(name = "id_like")
+    @JoinColumn(name = "id_like",referencedColumnName = "id_like")
     private Likes like;
 
     @Id
     @ManyToOne
-    @JoinColumn(name = "id_publicacion")
+    @JoinColumn(name = "id_publicacion",referencedColumnName = "id_publicacion")
     private Publicacion publicacion;
     
 }
