@@ -1,12 +1,13 @@
 package org.wayfarr.webwayfarr.Entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.Data;
+import org.springframework.transaction.annotation.Transactional;
 
 @Data
+@Entity
+@Table(name = "publicaciones")
+@Transactional
 public class Publicacion {
     @Id
     @Column(name = "id_publicacion")

@@ -1,13 +1,14 @@
 package org.wayfarr.webwayfarr.Entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.Data;
+import org.springframework.transaction.annotation.Transactional;
 import org.wayfarr.webwayfarr.Shared.BaseEntity;
 
+@Entity
 @Data
+@Transactional
+@Table(name = "Comentarios")
 public class Comentario extends BaseEntity {
     @Id
     @Column(name = "id_comentario")
